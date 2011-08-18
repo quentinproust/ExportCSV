@@ -9,12 +9,12 @@ namespace Exporter.Builder
     /// Default Builder to output data from a dataSource according to the mapping configuration.
     /// </summary>
     /// <typeparam name="TData">The type of data from the dataSource.</typeparam>
-    public class ExportBuilder<TData> : IExportBuilder<TData> where TData : class
+    public class ExportBuilder<TData> : IExportBuilder<TData>
     {
         /// <summary>
         /// The mapping configuration.
         /// </summary>
-        public IExportMapper<TData> Mapper { get; set; }
+        public ExportMapper<TData> Mapper { get; set; }
         /// <summary>
         /// The dataSource that will be used to populate the output.
         /// </summary>

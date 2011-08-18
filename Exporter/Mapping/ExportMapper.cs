@@ -1,32 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Exporter.Mapping
 {
     /// <summary>
-    /// Create the configuration required to export data.
+    /// Mapper to create the configuration of the mapping.
+    /// Will define how data objects are exported to the ouput.
     /// </summary>
-    /// <typeparam name="TData">The type of objects that will be exported</typeparam>
-    public class ExportMapper<TData> : IExportMapper<TData>
+    /// <typeparam name="TData">The type of data objects</typeparam>
+    public class ExportMapper<TData>
     {
         private readonly AutoTitleReader _autoTitleReader = new AutoTitleReader();
 
         /// <summary>
-        /// Constructor.
+        /// Default ctor
         /// </summary>
         public ExportMapper()
         {
-            Mappings = new List<IMapCommand<TData>>();
+            Mappings = new List<MapCommand<TData>>();
         }
 
         /// <summary>
-        /// All mapping informations.
+        /// The mapping that has already been defined.
         /// </summary>
-        public IList<IMapCommand<TData>> Mappings { get; private set; }
-
+        public IList<MapCommand<TData>> Mappings { get; private set; }
+    
         /// <summary>
         /// Configure an implicite value.
         /// </summary>

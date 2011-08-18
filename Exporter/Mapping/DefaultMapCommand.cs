@@ -6,21 +6,8 @@ namespace Exporter.Mapping
     /// <summary>
     /// Default Implementation of IMapCommand.
     /// </summary>
-    public class DefaultMapCommand<T> : IMapCommand<T>
+    public class DefaultMapCommand<T> : MapCommand<T>
     {
-        /// <summary>
-        /// The title for the current command.
-        /// </summary>
-        public string TitleProp { get; private set; }
-        /// <summary>
-        /// The function that will retrieve the value from data objects.
-        /// </summary>
-        public Func<T, object> ValueProp { get; private set; }
-        /// <summary>
-        /// The format function that will be used to format the value.
-        /// </summary>
-        public Func<object, string> FormatProp { get; private set; }
-
         /// <summary>
         /// Configure the title.
         /// If you use Value(x => x.SomeProperty) and Title is not yet defined,

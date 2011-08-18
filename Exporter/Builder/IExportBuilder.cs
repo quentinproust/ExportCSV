@@ -8,12 +8,12 @@ namespace Exporter.Builder
     /// Builder to output data from a dataSource according to the mapping configuration.
     /// </summary>
     /// <typeparam name="TData">The type of data from the dataSource.</typeparam>
-    public interface IExportBuilder<TData> where TData:class
+    public interface IExportBuilder<TData>
     {
         /// <summary>
         /// The mapping configuration.
         /// </summary>
-        IExportMapper<TData> Mapper { get; set; }
+        ExportMapper<TData> Mapper { get; set; }
         /// <summary>
         /// The dataSource that will be used to populate the output.
         /// </summary>
