@@ -7,7 +7,7 @@ namespace Exporter.Mapping
     /// <summary>
     /// Default Implementation of IMapCommand.
     /// </summary>
-    public class DefaultMapCommand<T> : IMapCommand<T> where T : class
+    public class DefaultMapCommand<T> : IMapCommand<T>
     {
         private readonly AutoTitleReader _autoTitleReader = new AutoTitleReader();
 
@@ -31,7 +31,7 @@ namespace Exporter.Mapping
         /// </summary>
         /// <param name="title">The title.</param>
         /// <returns>The command to continue the configuration</returns>
-        public IMapCommand<T> Title(string title)
+        public DefaultMapCommand<T> Title(string title)
         {
             TitleProp = title;
             return this;
@@ -43,7 +43,7 @@ namespace Exporter.Mapping
         /// <typeparam name="TValue">The type of value to export.</typeparam>
         /// <param name="property">The property</param>
         /// <returns>The command to continue the configuration</returns>
-        public IMapCommand<T> Value<TValue>(Expression<Func<T, TValue>> property)
+        public DefaultMapCommand<T> Value<TValue>(Expression<Func<T, TValue>> property)
         {
             var memberExpression = property.Body as MemberExpression;
             if (memberExpression == null)
@@ -67,7 +67,7 @@ namespace Exporter.Mapping
         /// </summary>
         /// <param name="valueGetter">The computation</param>
         /// <returns>The command to continue the configuration</returns>
-        public IMapCommand<T> Compute(Func<T, string> valueGetter)
+        public DefaultMapCommand<T> Compute(Func<T, string> valueGetter)
         {
             ValueProp = valueGetter;
             return this;
@@ -78,7 +78,7 @@ namespace Exporter.Mapping
         /// </summary>
         /// <param name="formatter">format string. Can contain {0}.</param>
         /// <returns>Map command</returns>
-        public IMapCommand<T> Format(string formatter)
+        public DefaultMapCommand<T> Format(string formatter)
         {
             if (String.IsNullOrEmpty(formatter)) return this;
 

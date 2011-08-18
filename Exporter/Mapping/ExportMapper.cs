@@ -9,7 +9,7 @@ namespace Exporter.Mapping
     /// Create the configuration required to export data.
     /// </summary>
     /// <typeparam name="TData">The type of objects that will be exported</typeparam>
-    public class ExportMapper<TData> : IExportMapper<TData> where TData : class
+    public class ExportMapper<TData> : IExportMapper<TData>
     {
         /// <summary>
         /// Constructor.
@@ -31,7 +31,7 @@ namespace Exporter.Mapping
         /// <typeparam name="TValue"><see cref="IExportMapper{TData}.ImplicitMap{TValue}"/></typeparam>
         /// <param name="property"><see cref="IExportMapper{TData}.ImplicitMap{TValue}"/></param>
         /// <returns><see cref="IExportMapper{TData}.ImplicitMap{TValue}"/></returns>
-        public IExportMapper<TData> ImplicitMap<TValue>(Expression<Func<TData, TValue>> property)
+        public ExportMapper<TData> ImplicitMap<TValue>(Expression<Func<TData, TValue>> property)
         {
             var mapping = new DefaultMapCommand<TData>()
                 .Value(property);
@@ -46,7 +46,7 @@ namespace Exporter.Mapping
         /// </summary>
         /// <param name="mapping"><see cref="IExportMapper{TData}.ImplicitMap{TValue}"/></param>
         /// <returns><see cref="IExportMapper{TData}.ImplicitMap{TValue}"/></returns>
-        public IExportMapper<TData> Map(Func<IMapCommand<TData>, IMapCommand<TData>> mapping)
+        public ExportMapper<TData> Map(Func<DefaultMapCommand<TData>, DefaultMapCommand<TData>> mapping)
         {
             Mappings.Add(mapping(new DefaultMapCommand<TData>()));
             return this;
