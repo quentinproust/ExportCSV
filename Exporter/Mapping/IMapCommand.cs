@@ -7,8 +7,8 @@ namespace Exporter.Mapping
     /// <summary>
     /// Interface for mapping data model.
     /// </summary>
-    /// <typeparam name="T">Type of the data model class.</typeparam>
-    public interface IMapCommand<T>
+    /// <typeparam name="TData">Type of the data model class.</typeparam>
+    public interface IMapCommand<TData>
     {
         /// <summary>
         /// Get the title value for the csv column.
@@ -17,7 +17,7 @@ namespace Exporter.Mapping
         /// <summary>
         /// Get the action that will retrieve the value from the model.
         /// </summary>
-        Func<T, object> ValueProp { get; }
+        Func<TData, object> ValueProp { get; }
         /// <summary>
         /// The format function that will be used to format the value.
         /// </summary>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using System.Reflection;
 
 namespace Exporter.Mapping
 {
@@ -9,8 +8,6 @@ namespace Exporter.Mapping
     /// </summary>
     public class DefaultMapCommand<T> : IMapCommand<T>
     {
-        private readonly AutoTitleReader _autoTitleReader = new AutoTitleReader();
-
         /// <summary>
         /// The title for the current command.
         /// </summary>
@@ -45,18 +42,8 @@ namespace Exporter.Mapping
         /// <returns>The command to continue the configuration</returns>
         public DefaultMapCommand<T> Value<TValue>(Expression<Func<T, TValue>> property)
         {
-            var memberExpression = property.Body as MemberExpression;
-            if (memberExpression == null)
-                return this;
-
-            var propertyInfo = memberExpression.Member as PropertyInfo;
-            if(propertyInfo == null)
-                return this;
-
-            if (TitleProp == null)
-                TitleProp = _autoTitleReader.GetTitle(propertyInfo);
-
-            ValueProp = model => propertyInfo.GetValue(model, null);
+            var compiledFunc = property.Compile();
+            ValueProp = model => compiledFunc.Invoke(model);
 
             return this;
         }
