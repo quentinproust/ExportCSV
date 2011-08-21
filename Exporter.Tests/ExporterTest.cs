@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using Exporter.Builder;
 using Exporter.Helpers;
+using Exporter.Mapping;
 using NUnit.Framework;
 
 namespace Exporter.Tests

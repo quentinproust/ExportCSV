@@ -55,6 +55,22 @@ namespace Exporter.Tests
             }
         }
 
+        public static IEnumerable<dynamic> StudentsAsDynamic
+        {
+            get
+            {
+                yield return new {
+                    FullName = "Jack Dynamic",
+                    Birthday = 25.YearsFromNow()
+                                 };
+                yield return new
+                {
+                    FullName = "Test Dynamic2",
+                    Birthday = 28.YearsFromNow()
+                };
+            }
+        }
+
         private static DateTime YearsFromNow(this int howManyYears)
         {
             var timeSpan = TimeSpan.FromDays(howManyYears*365);
